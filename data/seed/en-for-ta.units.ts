@@ -1,0 +1,472 @@
+// English for Tamil speakers. Prompts are Tamil, answers are English.
+import type { UnitSpec } from '../types';
+
+export const EN_TA_UNITS: UnitSpec[] = [
+  // ------------------------------------------------------------------ UNIT 1
+  {
+    title: 'Hello, English!',
+    subtitle: 'Greetings, names, family, numbers, colors',
+    section: 'Section 1: Getting Started',
+    theme: 'green',
+    intro:
+      'Start with the words you use every day. Tamil and English work differently, so each tip shows the gap and how to close it.',
+    tips: [
+      {
+        title: 'Greetings change with the time of day',
+        body: 'Tamil வணக்கம் works all day. English has a different greeting for each part of the day. Good morning is used until about noon.',
+        examples: [
+          { t: 'Good morning', n: 'காலை வணக்கம்' },
+          { t: 'Good night', n: 'இனிய இரவு' },
+        ],
+      },
+      {
+        title: 'Never skip am / is / are',
+        body: 'Tamil sentences like நான் ரவி have no word for "am". English always needs one. I am, you are, he/she/it is.',
+        examples: [
+          { t: 'I am Ravi', n: 'நான் ரவி' },
+          { t: 'She is a teacher', n: 'அவள் ஒரு ஆசிரியர்' },
+        ],
+      },
+      {
+        title: 'Add -s for more than one',
+        body: 'When you talk about two or more things, add -s to the noun. Tamil adds கள் instead.',
+        examples: [
+          { t: 'one book', n: 'ஒரு புத்தகம்' },
+          { t: 'two books', n: 'இரண்டு புத்தகங்கள்' },
+        ],
+      },
+    ],
+    lessons: [
+      {
+        title: 'Greetings',
+        icon: '👋',
+        tip: 'English has a different greeting for each time of day: Good morning (until noon), Good afternoon, Good evening, and Good night (when you leave or go to bed). Tamil வணக்கம் works all day.',
+        v: [
+          ['Hello', 'வணக்கம்', '👋'],
+          ['Good morning', 'காலை வணக்கம்', '🌅'],
+          ['Good night', 'இனிய இரவு', '🌙'],
+          ['Thank you', 'நன்றி', '🙏'],
+          ['Please', 'தயவுசெய்து'],
+        ],
+        s: [
+          ['Hello, how are you?', 'வணக்கம், நீங்கள் எப்படி இருக்கிறீர்கள்?', '"How are you?" is the normal way to start a chat. Answer with "I am fine."'],
+          ['I am fine, thank you', 'நான் நலமாக இருக்கிறேன், நன்றி'],
+          ['Good morning, teacher', 'காலை வணக்கம், ஆசிரியரே'],
+          ['Please sit down', 'தயவுசெய்து உட்காருங்கள்'],
+        ],
+        fill: { before: 'Good', after: ', teacher!', opts: ['morning', 'night', 'evening'], ans: 0, tr: 'காலை வணக்கம், ஆசிரியரே!' },
+        dlg: { lines: ['Hello, how are you?'], opts: ['I am fine, thank you.', 'Good night.', 'Please sit down.'], ans: 0, tr: 'வணக்கம், நீங்கள் எப்படி இருக்கிறீர்கள்?' },
+      },
+      {
+        title: 'Introductions',
+        icon: '🙋',
+        tip: 'Tamil often leaves out "am / is / are". English never does: "I am Ravi", "She is a teacher".',
+        v: [
+          ['I', 'நான்'],
+          ['you', 'நீ / நீங்கள்'],
+          ['name', 'பெயர்', '🏷️'],
+          ['friend', 'நண்பன்', '🧑‍🤝‍🧑'],
+          ['teacher', 'ஆசிரியர்', '👩‍🏫'],
+        ],
+        s: [
+          ['My name is Ravi', 'என் பெயர் ரவி', 'Tamil says என் பெயர் ரவி with no word for "is". English needs it: My name is Ravi.'],
+          ['What is your name?', 'உங்கள் பெயர் என்ன?'],
+          ['Nice to meet you', 'உங்களை சந்தித்ததில் மகிழ்ச்சி'],
+          ['He is my friend', 'அவன் என் நண்பன்'],
+        ],
+        fill: { before: 'I', after: ' Ravi.', opts: ['am', 'is', 'are'], ans: 0, tr: 'நான் ரவி.', note: 'Use "am" only with "I".' },
+        dlg: { lines: ['What is your name?'], opts: ['My name is Ravi.', 'I am fine.', 'Good night.'], ans: 0, tr: 'உங்கள் பெயர் என்ன?' },
+      },
+      {
+        title: 'Family',
+        icon: '👨‍👩‍👧',
+        tip: '"A" has no exact Tamil word (ஒரு is close). Use "a" before one thing: a brother, a doctor. Use "an" before a vowel sound: an apple.',
+        v: [
+          ['mother', 'அம்மா', '👩'],
+          ['father', 'அப்பா', '👨'],
+          ['brother', 'சகோதரன்', '👦'],
+          ['sister', 'சகோதரி', '👧'],
+          ['family', 'குடும்பம்', '👨‍👩‍👧‍👦'],
+        ],
+        s: [
+          ['This is my mother', 'இது என் அம்மா'],
+          ['I have a brother', 'எனக்கு ஒரு சகோதரன் இருக்கிறான்', 'Use "a" before one singular thing: a brother, a sister. Tamil uses ஒரு.'],
+          ['My father is a doctor', 'என் அப்பா ஒரு மருத்துவர்', 'Jobs need "a": He is a doctor. Not "He is doctor."'],
+          ['She is my sister', 'அவள் என் சகோதரி'],
+        ],
+        fill: { before: 'She is my', after: '.', opts: ['sister', 'brother', 'father'], ans: 0, tr: 'அவள் என் சகோதரி.', note: '"She" is a girl, so the family word is a girl too: sister.' },
+        dlg: { lines: ['Who is she?'], opts: ['She is my sister.', 'He is my brother.', 'I am fine.'], ans: 0, tr: 'அவள் யார்?' },
+      },
+      {
+        title: 'Numbers 1 to 5',
+        icon: '🔢',
+        tip: 'Add -s to make a noun plural after any number bigger than one: one book, two books.',
+        v: [
+          ['one', 'ஒன்று', '1️⃣'],
+          ['two', 'இரண்டு', '2️⃣'],
+          ['three', 'மூன்று', '3️⃣'],
+          ['four', 'நான்கு', '4️⃣'],
+          ['five', 'ஐந்து', '5️⃣'],
+        ],
+        s: [
+          ['I have two books', 'என்னிடம் இரண்டு புத்தகங்கள் உள்ளன', 'After two, three, four... the noun takes -s: two books.'],
+          ['There are five people', 'ஐந்து பேர் இருக்கிறார்கள்'],
+          ['I am ten years old', 'எனக்கு பத்து வயது', 'English says "I am ten years old". Tamil says "to me ten age".'],
+          ['Three apples, please', 'மூன்று ஆப்பிள்கள் தயவுசெய்து'],
+        ],
+        fill: { before: 'I have two', after: '.', opts: ['book', 'books', 'a book'], ans: 1, tr: 'என்னிடம் இரண்டு புத்தகங்கள் உள்ளன.' },
+        dlg: { lines: ['How many books do you have?'], opts: ['I have two books.', 'I am fine.', 'My name is Ravi.'], ans: 0, tr: 'உங்களிடம் எத்தனை புத்தகங்கள் உள்ளன?' },
+      },
+      {
+        title: 'Colors',
+        icon: '🎨',
+        tip: 'Colors come before the noun: a red apple, a black bag. Tamil does the same, so this one is easy.',
+        v: [
+          ['red', 'சிவப்பு', '🔴'],
+          ['blue', 'நீலம்', '🔵'],
+          ['green', 'பச்சை', '🟢'],
+          ['yellow', 'மஞ்சள்', '🟡'],
+          ['black', 'கருப்பு', '⚫'],
+        ],
+        s: [
+          ['The apple is red', 'ஆப்பிள் சிவப்பு', 'Use "the" for a specific thing both people know about: the apple.'],
+          ['I like blue', 'எனக்கு நீலம் பிடிக்கும்'],
+          ['The sky is blue', 'வானம் நீலம்'],
+          ['My bag is black', 'என் பை கருப்பு'],
+        ],
+        fill: { before: 'The sky is', after: '.', opts: ['blue', 'red', 'black'], ans: 0, tr: 'வானம் நீலம்.' },
+        dlg: { lines: ['What color is your bag?'], opts: ['My bag is black.', 'I have two books.', 'Good morning.'], ans: 0, tr: 'உங்கள் பையின் நிறம் என்ன?' },
+      },
+    ],
+    story: {
+      title: 'Meeting a New Friend',
+      cast: [
+        { id: 'raj', name: 'Raj', emoji: '🧑' },
+        { id: 'priya', name: 'Priya', emoji: '👩' },
+        { id: 'arun', name: 'Arun', emoji: '👦' },
+      ],
+      parts: [
+        ['raj', 'Hello! My name is Raj.', 'வணக்கம்! என் பெயர் ராஜ்.'],
+        ['priya', 'Hi Raj! I am Priya.', 'வணக்கம் ராஜ்! நான் பிரியா.'],
+        ['raj', 'Nice to meet you, Priya.', 'உங்களை சந்தித்ததில் மகிழ்ச்சி, பிரியா.'],
+        ['priya', 'Nice to meet you too. This is my brother, Arun.', 'எனக்கும் மகிழ்ச்சி. இது என் சகோதரன், அருண்.'],
+        ['arun', 'Hello! How are you?', 'வணக்கம்! நீங்கள் எப்படி இருக்கிறீர்கள்?'],
+        ['raj', 'I am fine, thank you.', 'நான் நலமாக இருக்கிறேன், நன்றி.'],
+      ],
+      questions: [
+        { after: 1, q: "What is the girl's name?", opts: ['Priya', 'Raj', 'Arun'], ans: 0 },
+        { after: 4, q: 'Who is Arun?', opts: ["Priya's brother", "Raj's teacher", "Priya's father"], ans: 0 },
+      ],
+    },
+    roleplays: ['coffee', 'doctor'],
+  },
+
+  // ------------------------------------------------------------------ UNIT 2
+  {
+    title: 'Daily Life',
+    subtitle: 'Food, home, routine, days, shopping',
+    section: 'Section 2: Everyday Life',
+    theme: 'blue',
+    intro: 'Now build real sentences. The biggest change from Tamil: in English the verb sits in the middle of the sentence, not at the end.',
+    tips: [
+      {
+        title: 'Subject, Verb, Object',
+        body: 'Tamil puts the verb last. English puts it second: Subject + Verb + Object.',
+        examples: [{ t: 'I eat rice', n: 'நான் சாதம் சாப்பிடுகிறேன்' }],
+      },
+      {
+        title: 'He / she / it adds -s',
+        body: 'With I, you, we, they the verb stays the same. With he, she or it, add -s (or -es after go).',
+        examples: [
+          { t: 'She drinks tea', n: 'அவள் தேநீர் குடிக்கிறாள்' },
+          { t: 'He goes to school', n: 'அவன் பள்ளிக்குச் செல்கிறான்' },
+        ],
+      },
+      {
+        title: 'In, on, at',
+        body: 'Tamil adds an ending to the word (-இல், -க்கு). English puts a small word before it. at + clock time, on + day, in + morning.',
+        examples: [
+          { t: 'at six', n: 'ஆறு மணிக்கு' },
+          { t: 'on Monday', n: 'திங்கள்கிழமை' },
+          { t: 'in the morning', n: 'காலையில்' },
+        ],
+      },
+    ],
+    lessons: [
+      {
+        title: 'Food and Drink',
+        icon: '🍚',
+        tip: 'English word order is Subject + Verb + Object (I eat rice). In Tamil the verb comes last. With he, she or it, add -s to the verb: she drinks.',
+        v: [
+          ['rice', 'சாதம்', '🍚'],
+          ['water', 'தண்ணீர்', '💧'],
+          ['tea', 'தேநீர்', '🍵'],
+          ['milk', 'பால்', '🥛'],
+          ['bread', 'ரொட்டி', '🍞'],
+        ],
+        s: [
+          ['I eat rice', 'நான் சாதம் சாப்பிடுகிறேன்', 'Subject (I) + verb (eat) + object (rice). The verb is in the middle, not at the end like Tamil.'],
+          ['I drink water', 'நான் தண்ணீர் குடிக்கிறேன்'],
+          ['She drinks tea', 'அவள் தேநீர் குடிக்கிறாள்', 'With he / she / it, add -s to the verb: she drinks, he eats.'],
+          ['We eat bread', 'நாங்கள் ரொட்டி சாப்பிடுகிறோம்'],
+        ],
+        fill: { before: 'She', after: ' tea.', opts: ['drinks', 'drink', 'drinking'], ans: 0, tr: 'அவள் தேநீர் குடிக்கிறாள்.' },
+        dlg: { lines: ['What do you drink in the morning?'], opts: ['I drink tea.', 'I eat a chair.', 'She is my sister.'], ans: 0, tr: 'நீங்கள் காலையில் என்ன குடிக்கிறீர்கள்?' },
+      },
+      {
+        title: 'Home',
+        icon: '🏠',
+        tip: 'Place words come after in / on / at in English: in the kitchen, on the table. Tamil adds endings like -இல் to the end of the word.',
+        v: [
+          ['house', 'வீடு', '🏠'],
+          ['door', 'கதவு', '🚪'],
+          ['table', 'மேசை'],
+          ['chair', 'நாற்காலி', '🪑'],
+          ['kitchen', 'சமையலறை', '🍳'],
+        ],
+        s: [
+          ['My house is big', 'என் வீடு பெரியது'],
+          ['The table is in the kitchen', 'மேசை சமையலறையில் உள்ளது', 'Tamil adds -இல் to the place word. English puts "in" before it: in the kitchen.'],
+          ['Open the door', 'கதவைத் திற'],
+          ['There is a chair here', 'இங்கே ஒரு நாற்காலி உள்ளது'],
+        ],
+        fill: { before: 'The table is', after: ' the kitchen.', opts: ['in', 'on', 'for'], ans: 0, tr: 'மேசை சமையலறையில் உள்ளது.' },
+        dlg: { lines: ['Where is the table?'], opts: ['It is in the kitchen.', 'I am fine.', 'It is red.'], ans: 0, tr: 'மேசை எங்கே?' },
+      },
+      {
+        title: 'Daily Routine',
+        icon: '⏰',
+        tip: 'Use "at" for clock time (at six, at ten). With he / she / it the verb gets -s or -es: he goes, she studies.',
+        v: [
+          ['wake up', 'எழுந்திரு', '⏰'],
+          ['eat', 'சாப்பிடு', '🍽️'],
+          ['go', 'போ', '🚶'],
+          ['study', 'படி', '📚'],
+          ['sleep', 'தூங்கு', '😴'],
+        ],
+        s: [
+          ['I wake up at six', 'நான் ஆறு மணிக்கு எழுந்திருக்கிறேன்', 'Use "at" before a clock time: at six. Tamil puts மணிக்கு after the time.'],
+          ['He goes to school', 'அவன் பள்ளிக்குச் செல்கிறான்'],
+          ['We study English', 'நாங்கள் ஆங்கிலம் படிக்கிறோம்'],
+          ['I sleep at night', 'நான் இரவில் தூங்குகிறேன்'],
+        ],
+        fill: { before: 'He', after: ' to school.', opts: ['goes', 'go', 'going'], ans: 0, tr: 'அவன் பள்ளிக்குச் செல்கிறான்.' },
+        dlg: { lines: ['When do you wake up?'], opts: ['I wake up at six.', 'I have two books.', 'He is my friend.'], ans: 0, tr: 'நீங்கள் எப்போது எழுந்திருக்கிறீர்கள்?' },
+      },
+      {
+        title: 'Time and Days',
+        icon: '📅',
+        tip: 'Use "on" with days (on Monday), "in" with parts of the day (in the morning) and "at" with night (at night).',
+        v: [
+          ['today', 'இன்று', '📅'],
+          ['tomorrow', 'நாளை'],
+          ['Monday', 'திங்கள்'],
+          ['morning', 'காலை', '🌅'],
+          ['night', 'இரவு', '🌃'],
+        ],
+        s: [
+          ['I am busy today', 'நான் இன்று பிஸியாக இருக்கிறேன்'],
+          ['See you tomorrow', 'நாளை சந்திப்போம்'],
+          ['School starts on Monday', 'பள்ளி திங்கள்கிழமை தொடங்குகிறது', 'Use "on" with days: on Monday. Use "in" with morning or evening: in the morning.'],
+          ['I work in the morning', 'நான் காலையில் வேலை செய்கிறேன்'],
+        ],
+        fill: { before: 'School starts', after: ' Monday.', opts: ['on', 'in', 'at'], ans: 0, tr: 'பள்ளி திங்கள்கிழமை தொடங்குகிறது.' },
+        dlg: { lines: ['See you tomorrow!'], opts: ['See you!', 'I am ten years old.', 'The table is red.'], ans: 0, tr: 'நாளை சந்திப்போம்!' },
+      },
+      {
+        title: 'Shopping',
+        icon: '🛍️',
+        tip: 'To ask a yes/no question, start with "Do" or "Does": "Do you have a bag?" Tamil adds ஆ at the end instead.',
+        v: [
+          ['shop', 'கடை', '🏪'],
+          ['money', 'பணம்', '💰'],
+          ['cheap', 'மலிவு'],
+          ['expensive', 'விலை அதிகம்'],
+          ['buy', 'வாங்கு', '🛒'],
+        ],
+        s: [
+          ['How much is this?', 'இது எவ்வளவு?'],
+          ['I want to buy a shirt', 'நான் ஒரு சட்டை வாங்க விரும்புகிறேன்', 'After "want" use "to" + verb: want to buy.'],
+          ['It is too expensive', 'இது மிகவும் விலை அதிகம்'],
+          ['Do you have a bag?', 'உங்களிடம் பை இருக்கிறதா?', 'Start yes/no questions with Do/Does: Do you have a bag? Tamil adds -ஆ at the end.'],
+        ],
+        fill: { before: '', after: ' you have a bag?', opts: ['Do', 'Does', 'Are'], ans: 0, tr: 'உங்களிடம் பை இருக்கிறதா?', note: 'Use "Do" with you, I, we, they. Use "Does" with he, she, it.' },
+        dlg: { lines: ['How much is this shirt?'], opts: ['It is two hundred rupees.', 'I wake up at six.', 'My name is Ravi.'], ans: 0, tr: 'இந்த சட்டை எவ்வளவு?' },
+      },
+    ],
+    story: {
+      title: 'At the Shop',
+      cast: [
+        { id: 'meena', name: 'Meena', emoji: '👩' },
+        { id: 'kumar', name: 'Mr. Kumar', emoji: '🧔' },
+      ],
+      parts: [
+        ['meena', 'Good morning! How much is this bag?', 'காலை வணக்கம்! இந்த பை எவ்வளவு?'],
+        ['kumar', 'It is two hundred rupees.', 'இது இருநூறு ரூபாய்.'],
+        ['meena', 'That is expensive. Do you have a cheaper bag?', 'அது விலை அதிகம். மலிவான பை இருக்கிறதா?'],
+        ['kumar', 'Yes. This blue bag is one hundred rupees.', 'ஆம். இந்த நீலப் பை நூறு ரூபாய்.'],
+        ['meena', 'Great! I want to buy it.', 'அருமை! நான் அதை வாங்க விரும்புகிறேன்.'],
+        ['kumar', 'Thank you!', 'நன்றி!'],
+      ],
+      questions: [
+        { after: 3, q: 'How much is the blue bag?', opts: ['One hundred rupees', 'Two hundred rupees', 'Five rupees'], ans: 0 },
+        { after: 4, q: 'What does Meena want to do?', opts: ['Buy the blue bag', 'Sell a shirt', 'Drink tea'], ans: 0 },
+      ],
+    },
+    roleplays: [],
+  },
+
+  // ------------------------------------------------------------------ UNIT 3
+  {
+    title: 'Out and About',
+    subtitle: 'Directions, transport, weather, health, work',
+    section: 'Section 3: The Real World',
+    theme: 'purple',
+    intro: 'Time to use English outside: asking the way, taking a bus, seeing a doctor and talking about work.',
+    tips: [
+      {
+        title: 'Always give a subject',
+        body: 'Tamil can say மழை பெய்கிறது with no subject. English needs "It": It is raining.',
+        examples: [
+          { t: 'It is hot today', n: 'இன்று வெப்பமாக இருக்கிறது' },
+          { t: 'It is raining', n: 'மழை பெய்கிறது' },
+        ],
+      },
+      {
+        title: 'Questions with do / does',
+        body: 'Put Do or Does first. After does, the verb has no -s.',
+        examples: [
+          { t: 'Do you have a bag?', n: 'உங்களிடம் பை இருக்கிறதா?' },
+          { t: 'When does the train leave?', n: 'ரயில் எப்போது புறப்படும்?' },
+        ],
+      },
+      {
+        title: 'The future with will',
+        body: 'Use will + base verb. Never add -s after will.',
+        examples: [{ t: 'I will send an email', n: 'நான் ஒரு மின்னஞ்சல் அனுப்புவேன்' }],
+      },
+    ],
+    lessons: [
+      {
+        title: 'Directions',
+        icon: '🧭',
+        tip: 'For directions, start with the verb: "Turn left", "Go straight". Use "the" before places: the bus stop, the station.',
+        v: [
+          ['left', 'இடது', '⬅️'],
+          ['right', 'வலது', '➡️'],
+          ['straight', 'நேராக', '⬆️'],
+          ['near', 'அருகில்'],
+          ['far', 'தூரம்'],
+        ],
+        s: [
+          ['Turn left', 'இடதுபுறம் திரும்புங்கள்', 'Give directions with the verb first: Turn left, Go straight.'],
+          ['Where is the bus stop?', 'பேருந்து நிறுத்தம் எங்கே?'],
+          ['Go straight', 'நேராகச் செல்லுங்கள்'],
+          ['It is near the station', 'அது நிலையத்திற்கு அருகில் உள்ளது'],
+        ],
+        fill: { before: 'Turn', after: ' at the corner.', opts: ['left', 'near', 'far'], ans: 0, tr: 'முனையில் இடதுபுறம் திரும்புங்கள்.' },
+        dlg: { lines: ['Excuse me, where is the station?'], opts: ['Go straight, then turn left.', 'I am fine.', 'It is red.'], ans: 0, tr: 'மன்னிக்கவும், நிலையம் எங்கே?' },
+      },
+      {
+        title: 'Transport',
+        icon: '🚌',
+        tip: 'Use "take the bus" or "go by bus". In questions with "does", the verb stays simple: "When does the train leave?" (not "leaves").',
+        v: [
+          ['bus', 'பேருந்து', '🚌'],
+          ['train', 'ரயில்', '🚆'],
+          ['ticket', 'பயணச்சீட்டு', '🎫'],
+          ['station', 'நிலையம்', '🚉'],
+          ['airport', 'விமான நிலையம்', '✈️'],
+        ],
+        s: [
+          ['I take the bus to work', 'நான் வேலைக்குப் பேருந்தில் செல்கிறேன்'],
+          ['One ticket, please', 'ஒரு பயணச்சீட்டு தயவுசெய்து'],
+          ['The train is late', 'ரயில் தாமதமாக உள்ளது'],
+          ['When does the train leave?', 'ரயில் எப்போது புறப்படும்?', 'After "does" the verb has no -s: When does the train leave (not leaves).'],
+        ],
+        fill: { before: 'When does the train', after: '?', opts: ['leave', 'leaves', 'leaving'], ans: 0, tr: 'ரயில் எப்போது புறப்படும்?' },
+        dlg: { lines: ['Where do you want to go?'], opts: ['I want to go to the airport.', 'I am ten years old.', 'She drinks tea.'], ans: 0, tr: 'நீங்கள் எங்கே செல்ல விரும்புகிறீர்கள்?' },
+      },
+      {
+        title: 'Weather',
+        icon: '🌦️',
+        tip: 'English always needs a subject. For weather we use "It": "It is hot", "It is raining". Tamil has no such word.',
+        v: [
+          ['hot', 'வெப்பம்', '🥵'],
+          ['rain', 'மழை', '🌧️'],
+          ['cold', 'குளிர்', '🥶'],
+          ['sun', 'சூரியன்', '☀️'],
+          ['wind', 'காற்று', '💨'],
+        ],
+        s: [
+          ['It is hot today', 'இன்று வெப்பமாக இருக்கிறது', 'English needs "It" here. It has no meaning, but every English sentence needs a subject.'],
+          ['It is raining', 'மழை பெய்கிறது'],
+          ['The weather is nice', 'வானிலை நன்றாக உள்ளது'],
+          ['I like the rain', 'எனக்கு மழை பிடிக்கும்'],
+        ],
+        fill: { before: '', after: ' is raining.', opts: ['It', 'He', 'They'], ans: 0, tr: 'மழை பெய்கிறது.' },
+        dlg: { lines: ['How is the weather?'], opts: ['It is hot today.', 'I want to buy a shirt.', 'My father is a doctor.'], ans: 0, tr: 'வானிலை எப்படி?' },
+      },
+      {
+        title: 'Health',
+        icon: '🩺',
+        tip: 'For illness say "I have a ..." (I have a fever). For body pain say "My ... hurts" (My head hurts). Tamil uses எனக்கு (to me) instead.',
+        v: [
+          ['doctor', 'மருத்துவர்', '🩺'],
+          ['medicine', 'மருந்து', '💊'],
+          ['fever', 'காய்ச்சல்', '🤒'],
+          ['head', 'தலை'],
+          ['pain', 'வலி', '😣'],
+        ],
+        s: [
+          ['I have a fever', 'எனக்கு காய்ச்சல் உள்ளது', 'English says "I have a fever". Tamil uses எனக்கு (to me).'],
+          ['I need a doctor', 'எனக்கு ஒரு மருத்துவர் தேவை'],
+          ['My head hurts', 'என் தலை வலிக்கிறது'],
+          ['Take this medicine', 'இந்த மருந்தை எடுத்துக்கொள்ளுங்கள்'],
+        ],
+        fill: { before: 'I', after: ' a fever.', opts: ['have', 'am', 'has'], ans: 0, tr: 'எனக்கு காய்ச்சல் உள்ளது.' },
+        dlg: { lines: ['What is the problem?'], opts: ['I have a fever.', 'The bus is late.', 'It is blue.'], ans: 0, tr: 'என்ன பிரச்சனை?' },
+      },
+      {
+        title: 'Work',
+        icon: '💼',
+        tip: 'Use "will" + base verb for the future: "I will send an email" (not "I will sends"). Use "an" before vowel sounds: an office, an email.',
+        v: [
+          ['office', 'அலுவலகம்', '🏢'],
+          ['job', 'வேலை', '💼'],
+          ['boss', 'மேலாளர்'],
+          ['meeting', 'கூட்டம்', '🗓️'],
+          ['email', 'மின்னஞ்சல்', '📧'],
+        ],
+        s: [
+          ['I work in an office', 'நான் ஒரு அலுவலகத்தில் வேலை செய்கிறேன்', 'Use "an" before a vowel sound: an office, an email.'],
+          ['I have a meeting at ten', 'எனக்கு பத்து மணிக்கு ஒரு கூட்டம் உள்ளது'],
+          ['I will send an email', 'நான் ஒரு மின்னஞ்சல் அனுப்புவேன்', 'Will + base verb. No -s after will.'],
+          ['My boss is very kind', 'என் மேலாளர் மிகவும் அன்பானவர்'],
+        ],
+        fill: { before: 'I will', after: ' an email.', opts: ['send', 'sends', 'sending'], ans: 0, tr: 'நான் ஒரு மின்னஞ்சல் அனுப்புவேன்.' },
+        dlg: { lines: ['What do you do?'], opts: ['I work in an office.', 'I am very cold.', 'Turn left.'], ans: 0, tr: 'நீங்கள் என்ன வேலை செய்கிறீர்கள்?' },
+      },
+    ],
+    story: {
+      title: 'Late for the Bus',
+      cast: [
+        { id: 'sam', name: 'Sam', emoji: '🧑' },
+        { id: 'anu', name: 'Anu', emoji: '👩' },
+      ],
+      parts: [
+        ['sam', 'Excuse me, where is the bus stop?', 'மன்னிக்கவும், பேருந்து நிறுத்தம் எங்கே?'],
+        ['anu', 'Go straight and turn left. It is near the station.', 'நேராகச் சென்று இடதுபுறம் திரும்புங்கள். அது நிலையத்திற்கு அருகில் உள்ளது.'],
+        ['sam', 'Thank you! Is the bus late today?', 'நன்றி! இன்று பேருந்து தாமதமா?'],
+        ['anu', 'Yes. It is raining and the bus is late.', 'ஆம். மழை பெய்கிறது, பேருந்து தாமதமாக உள்ளது.'],
+        ['sam', 'Oh no. I have a meeting at ten.', 'ஐயோ. எனக்கு பத்து மணிக்கு கூட்டம் உள்ளது.'],
+        ['anu', 'Take a taxi, then. Good luck!', 'அப்படியானால் டாக்ஸியில் செல்லுங்கள். வாழ்த்துகள்!'],
+      ],
+      questions: [
+        { after: 1, q: 'Where is the bus stop?', opts: ['Near the station', 'Far from the shop', 'In the kitchen'], ans: 0 },
+        { after: 4, q: 'Why is Sam worried?', opts: ['He has a meeting at ten', 'He has no money', 'He is sick'], ans: 0 },
+      ],
+    },
+    roleplays: ['bus', 'hotel', 'interview'],
+  },
+];

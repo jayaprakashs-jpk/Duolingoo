@@ -1,0 +1,73 @@
+{
+  "expo": {
+    "name": "LinguaSpark",
+    "slug": "linguaspark",
+    "scheme": "linguaspark",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#58CC02"
+    },
+    "android": {
+      "package": "com.linguaspark.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#58CC02"
+      },
+      "permissions": [
+        "RECORD_AUDIO",
+        "INTERNET",
+        "VIBRATE"
+      ],
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      "expo-asset",
+      "expo-font",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "LinguaSpark uses the microphone for speaking exercises and AI tutor calls."
+        }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "LinguaSpark uses the microphone for speaking exercises and AI tutor calls.",
+          "speechRecognitionPermission": "LinguaSpark uses speech recognition to check your pronunciation.",
+          "androidSpeechServicePackages": [
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.as"
+          ]
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "minSdkVersion": 24
+          }
+        }
+      ],
+      "./plugins/withLinguaSparkAndroid"
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
