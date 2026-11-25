@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from '@/components/ui/Button';
@@ -12,6 +12,7 @@ import { play } from '@/services/sound';
 import { useApp } from '@/store/app';
 import { useSessionStore } from '@/store/session';
 import { toast } from '@/store/ui';
+import { Press } from '@/components/ui/Press';
 
 interface Msg {
   who: 'you' | 'npc';
@@ -150,20 +151,20 @@ export default function Roleplay() {
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: '#F7F7F7', paddingTop: insets.top }}>
       <View style={{ backgroundColor: '#fff', paddingHorizontal: 14, paddingVertical: 10, borderBottomWidth: 2, borderBottomColor: '#E5E5E5' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Press onPress={() => router.back()} hitSlop={12}>
             <Text style={{ fontSize: 26, color: '#AFAFAF', fontWeight: '800' }}>✕</Text>
-          </Pressable>
+          </Press>
           <Text style={{ fontSize: 30 }}>{rp.persona.emoji}</Text>
           <View style={{ flex: 1 }}>
             <Text style={{ fontWeight: '900', color: '#4B4B4B', fontSize: 16 }}>{rp.persona.name}</Text>
             <Text style={{ color: '#777', fontSize: 12 }}>{rp.persona.role} · {rp.title}</Text>
           </View>
-          <Pressable onPress={() => setVoice((v) => !v)} style={{ padding: 6 }}>
+          <Press onPress={() => setVoice((v) => !v)} style={{ padding: 6 }}>
             <Text style={{ fontSize: 22 }}>{voice ? '🔊' : '🔇'}</Text>
-          </Pressable>
-          <Pressable onPress={() => setShowTr((v) => !v)} style={{ padding: 6 }}>
+          </Press>
+          <Press onPress={() => setShowTr((v) => !v)} style={{ padding: 6 }}>
             <Text style={{ fontSize: 22 }}>{showTr ? '🌐' : '🚫'}</Text>
-          </Pressable>
+          </Press>
         </View>
         <Text style={{ color: '#777', marginTop: 6, fontSize: 13 }}>{rp.setting}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 8 }}>
@@ -201,9 +202,9 @@ export default function Roleplay() {
         ) : (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingHorizontal: 10, marginBottom: 6 }}>
             {rp.hints.map((h) => (
-              <Pressable key={h} onPress={() => setDraft(h)} style={{ backgroundColor: '#F0F9FF', borderColor: '#84D8FF', borderWidth: 1.5, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 6, marginRight: 8 }}>
+              <Press key={h} onPress={() => setDraft(h)} style={{ backgroundColor: '#F0F9FF', borderColor: '#84D8FF', borderWidth: 1.5, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 6, marginRight: 8 }}>
                 <Text style={{ color: '#1899D6', fontWeight: '700' }}>{h}</Text>
-              </Pressable>
+              </Press>
             ))}
           </ScrollView>
         )}
@@ -218,14 +219,14 @@ export default function Roleplay() {
             onSubmitEditing={() => void send(draft)}
             style={{ flex: 1, borderWidth: 2, borderColor: '#E5E5E5', borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, fontSize: 16, backgroundColor: '#F7F7F7', color: '#4B4B4B' }}
           />
-          <Pressable onPress={() => void mic()} accessibilityLabel="Speak" style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: listening ? '#FF4B4B' : '#1CB0F6', alignItems: 'center', justifyContent: 'center' }}>
+          <Press onPress={() => void mic()} accessibilityLabel="Speak" style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: listening ? '#FF4B4B' : '#1CB0F6', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 22 }}>{listening ? '⏹️' : '🎤'}</Text>
-          </Pressable>
-          <Pressable onPress={() => void send(draft)} accessibilityLabel="Send" style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: draft.trim() ? '#58CC02' : '#E5E5E5', alignItems: 'center', justifyContent: 'center' }}>
+          </Press>
+          <Press onPress={() => void send(draft)} accessibilityLabel="Send" style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: draft.trim() ? '#58CC02' : '#E5E5E5', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 20, color: '#fff', fontWeight: '900' }}>➤</Text>
-          </Pressable>
+          </Press>
         </View>
-        {!allDone ? <Pressable onPress={finish} style={{ padding: 8 }}><Text style={{ textAlign: 'center', color: '#AFAFAF', fontWeight: '800', fontSize: 12 }}>END AND GRADE NOW</Text></Pressable> : null}
+        {!allDone ? <Press onPress={finish} style={{ padding: 8 }}><Text style={{ textAlign: 'center', color: '#AFAFAF', fontWeight: '800', fontSize: 12 }}>END AND GRADE NOW</Text></Press> : null}
       </View>
     </KeyboardAvoidingView>
   );

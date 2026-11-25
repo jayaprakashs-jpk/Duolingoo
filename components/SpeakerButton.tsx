@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { speak } from '@/services/speech';
+import { Press } from '@/components/ui/Press';
 
 interface Props {
   text: string;
@@ -13,7 +14,7 @@ interface Props {
 export function SpeakerButton({ text, lang, size = 44, slow, color = '#1CB0F6' }: Props) {
   const [playing, setPlaying] = useState(false);
   return (
-    <Pressable
+    <Press
       accessibilityLabel={slow ? 'Play slowly' : 'Play audio'}
       onPress={() => {
         setPlaying(true);
@@ -31,7 +32,7 @@ export function SpeakerButton({ text, lang, size = 44, slow, color = '#1CB0F6' }
       })}
     >
       <Text style={{ fontSize: size * 0.48 }}>{slow ? '🐢' : '🔊'}</Text>
-    </Pressable>
+    </Press>
   );
 }
 

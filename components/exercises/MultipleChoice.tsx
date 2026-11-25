@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import type { MultipleChoiceEx } from '@/data/types';
 import { SpeakerButton } from '@/components/SpeakerButton';
 import { useCourseCtx } from '@/components/CourseContext';
 import { play } from '@/services/sound';
 import { Shell } from './Shell';
 import type { ExProps } from './types';
+import { Press } from '@/components/ui/Press';
 
 export function MultipleChoice({ ex, onAnswer, locked, grade }: ExProps<MultipleChoiceEx>) {
   const course = useCourseCtx();
@@ -27,7 +28,7 @@ export function MultipleChoice({ ex, onAnswer, locked, grade }: ExProps<Multiple
           const border = isRight ? '#58CC02' : isWrongPick ? '#FF4B4B' : selected ? '#84D8FF' : '#E5E5E5';
           const bg = isRight ? '#D7FFB8' : isWrongPick ? '#FFDFE0' : selected ? '#DDF4FF' : '#fff';
           return (
-            <Pressable
+            <Press
               key={i}
               disabled={locked}
               onPress={() => {
@@ -50,7 +51,7 @@ export function MultipleChoice({ ex, onAnswer, locked, grade }: ExProps<Multiple
             >
               {o.emoji ? <Text style={{ fontSize: 44 }}>{o.emoji}</Text> : null}
               <Text style={{ fontSize: 19, fontWeight: '700', color: '#4B4B4B', flexShrink: 1, lineHeight: 28 }}>{o.text}</Text>
-            </Pressable>
+            </Press>
           );
         })}
       </View>

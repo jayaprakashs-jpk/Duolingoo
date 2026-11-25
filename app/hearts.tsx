@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Button } from '@/components/ui/Button';
 import { useHearts } from '@/hooks/useHearts';
@@ -7,6 +7,7 @@ import { MAX_HEARTS, PRICES } from '@/lib/constants';
 import { formatCountdown } from '@/lib/date';
 import { useApp } from '@/store/app';
 import { toast } from '@/store/ui';
+import { Press } from '@/components/ui/Press';
 
 export default function HeartsSheet() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function HeartsSheet() {
   const buyItem = useApp((s) => s.buyItem);
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }}>
-      <Pressable style={{ flex: 1 }} onPress={() => router.back()} />
+      <Press accessibilityLabel="Close" style={{ flex: 1 }} onPress={() => router.back()} />
       <View style={{ backgroundColor: '#fff', borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 20, gap: 10, paddingBottom: 30 }}>
         <Text style={{ fontSize: 22, fontWeight: '900', color: '#4B4B4B', textAlign: 'center' }}>Hearts</Text>
         <Text style={{ fontSize: 34, textAlign: 'center' }}>{Array.from({ length: MAX_HEARTS }).map((_, i) => (i < h.hearts ? '❤️' : '🤍')).join(' ')}</Text>

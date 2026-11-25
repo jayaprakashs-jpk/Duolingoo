@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert, Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import { Alert, Modal, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AdBanner } from '@/components/AdPlaceholder';
@@ -14,6 +14,7 @@ import { useHearts } from '@/hooks/useHearts';
 import { PRICES } from '@/lib/constants';
 import { useApp } from '@/store/app';
 import { toast } from '@/store/ui';
+import { Press } from '@/components/ui/Press';
 
 const OFFSETS = [0, 46, 78, 46, 0, -46, -78, -46];
 
@@ -160,14 +161,14 @@ export default function Learn() {
                     <Text style={{ color: unlocked ? '#fff' : '#777', fontWeight: '900', fontSize: 21 }}>{u.title}</Text>
                     <Text style={{ color: unlocked ? 'rgba(255,255,255,0.9)' : '#999', fontSize: 14 }}>{u.subtitle}</Text>
                   </View>
-                  <Pressable
+                  <Press
                     onPress={() => router.push(`/guidebook?unit=${encodeURIComponent(u.id)}`)}
                     accessibilityLabel="Open guidebook"
                     style={({ pressed }) => ({ backgroundColor: 'rgba(0,0,0,0.18)', borderRadius: 14, padding: 10, alignItems: 'center', opacity: pressed ? 0.7 : 1 })}
                   >
                     <Text style={{ fontSize: 22 }}>📖</Text>
                     <Text style={{ color: '#fff', fontSize: 10, fontWeight: '900' }}>GUIDEBOOK</Text>
-                  </Pressable>
+                  </Press>
                 </View>
                 {downloaded[u.id] ? <Text style={{ color: '#fff', marginTop: 6, fontWeight: '800', fontSize: 12 }}>⬇ Available offline</Text> : null}
                 {!unlocked ? (

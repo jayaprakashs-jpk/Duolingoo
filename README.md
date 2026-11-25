@@ -148,7 +148,9 @@ scripts/        asset generators and the test suites
 ```bash
 npm run check
 ```
-Type-checks, then verifies: every one of the 342 exercises grades correctly (right answer passes, wrong fails); all text-matching rules; both offline AI engines; spaced repetition; the real SQLite code against an in-memory SQLite; and the Studio importer. CI runs the same command before building.
+Type-checks, then verifies (the first check is a native-UI guard, see below): every one of the 342 exercises grades correctly (right answer passes, wrong fails); all text-matching rules; both offline AI engines; spaced repetition; the real SQLite code against an in-memory SQLite; and the Studio importer. CI runs the same command before building.
+
+**Native UI tests.** Jest renders the real screens on React Native's native renderer (not a browser) and taps through them: onboarding, sign-in and guest mode, a lesson, and every main tab. These exist because of a real bug: NativeWind v4 drops `Pressable` style *functions* on Android, which made buttons invisible. Always use `<Press>` from `components/ui/Press.tsx` instead of `Pressable`. `scripts/check-no-style-functions.ts` fails the build if you forget.
 
 ## 8. Things to know
 

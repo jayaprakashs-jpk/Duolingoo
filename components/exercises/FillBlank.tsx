@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import type { FillBlankEx } from '@/data/types';
 import { Tile } from '@/components/ui/Tile';
 import { play } from '@/services/sound';
 import { Shell } from './Shell';
 import type { ExProps } from './types';
+import { Press } from '@/components/ui/Press';
 
 export function FillBlank({ ex, onAnswer, locked, grade }: ExProps<FillBlankEx>) {
   const [sel, setSel] = useState<number | null>(null);
@@ -37,7 +38,7 @@ export function FillBlank({ ex, onAnswer, locked, grade }: ExProps<FillBlankEx>)
           />
         ))}
       </View>
-      <Pressable />
+      <Press />
     </Shell>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, KeyboardAvoidingView, Pressable, ScrollView, Text, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, ScrollView, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { Course, Exercise } from '@/data/types';
@@ -19,6 +19,7 @@ import { OutOfHeartsModal } from './OutOfHeartsModal';
 import { Button } from './ui/Button';
 import { ProgressBar } from './ui/ProgressBar';
 import { AUTO_SUBMIT, ExerciseView, SILENT_RESULT } from './exercises/ExerciseView';
+import { Press } from '@/components/ui/Press';
 
 export interface ExResult {
   ex: Exercise;
@@ -236,9 +237,9 @@ export function LessonRunner(props: Props) {
     <CourseProvider course={course}>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: '#fff', paddingTop: insets.top }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 10 }}>
-          <Pressable onPress={quit} accessibilityLabel="Quit lesson" hitSlop={12}>
+          <Press onPress={quit} accessibilityLabel="Quit lesson" hitSlop={12}>
             <Text style={{ fontSize: 26, color: '#AFAFAF', fontWeight: '800' }}>✕</Text>
-          </Pressable>
+          </Press>
           <View style={{ flex: 1 }}>
             <ProgressBar value={progress} color={accent} />
           </View>

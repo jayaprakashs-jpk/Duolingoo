@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import type { DialogueEx } from '@/data/types';
 import { useCourseCtx } from '@/components/CourseContext';
 import { speak } from '@/services/speech';
 import { play } from '@/services/sound';
 import { Bubble, Shell } from './Shell';
 import type { ExProps } from './types';
+import { Press } from '@/components/ui/Press';
 
 export function DialogueComplete({ ex, onAnswer, locked, grade }: ExProps<DialogueEx>) {
   const course = useCourseCtx();
@@ -35,7 +36,7 @@ export function DialogueComplete({ ex, onAnswer, locked, grade }: ExProps<Dialog
           const border = right ? '#58CC02' : wrong ? '#FF4B4B' : sel === i ? '#84D8FF' : '#E5E5E5';
           const bg = right ? '#D7FFB8' : wrong ? '#FFDFE0' : sel === i ? '#DDF4FF' : '#fff';
           return (
-            <Pressable
+            <Press
               key={i}
               disabled={locked}
               onPress={() => {
@@ -46,7 +47,7 @@ export function DialogueComplete({ ex, onAnswer, locked, grade }: ExProps<Dialog
               style={({ pressed }) => ({ backgroundColor: bg, borderColor: border, borderWidth: 2, borderBottomWidth: pressed ? 2 : 4, borderRadius: 16, padding: 14 })}
             >
               <Text style={{ fontSize: 18, fontWeight: '700', color: '#4B4B4B', lineHeight: 27 }}>{o}</Text>
-            </Pressable>
+            </Press>
           );
         })}
       </View>

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Screen } from '@/components/ui/Screen';
 import { signIn, signUp } from '@/services/account';
+import { useApp } from '@/store/app';
 import { isSupabaseConfigured } from '@/services/supabase';
 import { toast } from '@/store/ui';
 
@@ -17,8 +18,16 @@ export default function Auth() {
   const [name, setName] = useState('');
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState('');
+  const onboarded = useApp((s) => s.onboarded);
 
   const input = { borderWidth: 2, borderColor: '#E5E5E5', borderRadius: 14, padding: 14, fontSize: 17, backgroundColor: '#F7F7F7', color: '#4B4B4B' } as const;
+
+  // Guest mode = no account. The learner id stays null and everything is stored on the phone.
+  // Not onboarded yet -> continue onboarding at the language step. Already onboarded -> straight to the app.
+  const continueAsGuest = () => {
+    useApp.getState().setUser(null, null);
+    router.replace(onboarded ? '/(tabs)/learn' : '/onboarding?step=1');
+  };
 
   const go = async () => {
     setBusy(true);
@@ -47,9 +56,10 @@ export default function Auth() {
         <TextInput value={email} onChangeText={setEmail} placeholder="Email" placeholderTextColor="#AFAFAF" autoCapitalize="none" keyboardType="email-address" style={input} />
         <TextInput value={password} onChangeText={setPassword} placeholder="Password (6+ characters)" placeholderTextColor="#AFAFAF" secureTextEntry autoCapitalize="none" style={input} />
         {msg ? <Text style={{ color: '#EA2B2B', fontWeight: '700' }}>{msg}</Text> : null}
+        {!isSupabaseConfigured ? <Button title="Continue as guest" onPress={continueAsGuest} /> : null}
         <Button title={mode === 'in' ? 'Sign in' : 'Create account'} onPress={go} loading={busy} disabled={!isSupabaseConfigured || !email || password.length < 6} />
         <Button title={mode === 'in' ? 'New here? Create an account' : 'I already have an account'} variant="white" onPress={() => setMode(mode === 'in' ? 'up' : 'in')} />
-        <Button title="Continue as guest" variant="white" onPress={() => (router.canGoBack() ? router.back() : router.replace('/(tabs)/learn'))} />
+        {isSupabaseConfigured ? <Button title="Continue as guest" variant="white" onPress={continueAsGuest} /> : null}
       </View>
     </Screen>
   );

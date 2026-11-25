@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
-import { ActivityIndicator, Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { haptic } from '@/services/sound';
+import { Press } from '@/components/ui/Press';
 
 export type Variant = 'green' | 'blue' | 'red' | 'gray' | 'white' | 'gold' | 'purple' | 'orange';
 
@@ -35,7 +36,7 @@ export function Button({ title, onPress, variant = 'green', disabled, loading, s
   const text = !disabled && color?.text ? color.text : p.text;
   const border = variant === 'white' && !disabled ? 2 : 0;
   return (
-    <Pressable
+    <Press
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled }}
       disabled={disabled || loading}
@@ -65,7 +66,7 @@ export function Button({ title, onPress, variant = 'green', disabled, loading, s
     >
       {loading ? <ActivityIndicator color={text} /> : icon}
       <Text style={{ color: text, fontWeight: '800', fontSize: small ? 14 : 16, letterSpacing: 0.6, textTransform: 'uppercase' }}>{title}</Text>
-    </Pressable>
+    </Press>
   );
 }
 

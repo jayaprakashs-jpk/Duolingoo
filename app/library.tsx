@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LockedPanel } from '@/components/LockedPanel';
 import { ScreenHeader } from '@/components/ScreenHeader';
@@ -12,6 +12,7 @@ import { useEntitlements } from '@/hooks/useEntitlements';
 import { normalize } from '@/lib/text';
 import { getWords, type WordRow } from '@/services/db';
 import { useApp } from '@/store/app';
+import { Press } from '@/components/ui/Press';
 
 export default function Library() {
   const router = useRouter();
@@ -48,9 +49,9 @@ export default function Library() {
       <ScreenHeader title="Library" />
       <View style={{ flexDirection: 'row', gap: 8, marginBottom: 12 }}>
         {(['words', 'stories'] as const).map((t) => (
-          <Pressable key={t} onPress={() => setTab(t)} style={{ flex: 1, padding: 12, borderRadius: 14, borderWidth: 2, borderBottomWidth: 4, borderColor: tab === t ? '#84D8FF' : '#E5E5E5', backgroundColor: tab === t ? '#DDF4FF' : '#fff', alignItems: 'center' }}>
+          <Press key={t} onPress={() => setTab(t)} style={{ flex: 1, padding: 12, borderRadius: 14, borderWidth: 2, borderBottomWidth: 4, borderColor: tab === t ? '#84D8FF' : '#E5E5E5', backgroundColor: tab === t ? '#DDF4FF' : '#fff', alignItems: 'center' }}>
             <Text style={{ fontWeight: '900', color: '#4B4B4B' }}>{t === 'words' ? `Words (${words.length})` : `Stories (${stories.length})`}</Text>
-          </Pressable>
+          </Press>
         ))}
       </View>
 

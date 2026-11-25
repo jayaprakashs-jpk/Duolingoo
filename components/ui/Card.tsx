@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
-import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
+import { View, type StyleProp, type ViewStyle } from 'react-native';
+import { Press } from '@/components/ui/Press';
 
 interface Props {
   children: ReactNode;
@@ -15,9 +16,9 @@ export function Card({ children, onPress, style, className = '', border = '#E5E5
   const colors: ViewStyle = { backgroundColor: bg, borderColor: border };
   if (onPress)
     return (
-      <Pressable onPress={onPress} className={`rounded-[18px] border-2 border-b-4 p-3.5 active:border-b-2 active:mt-0.5 ${className}`} style={[colors, style as ViewStyle]}>
+      <Press onPress={onPress} className={`rounded-[18px] border-2 border-b-4 p-3.5 active:border-b-2 active:mt-0.5 ${className}`} style={[colors, style as ViewStyle]}>
         {children}
-      </Pressable>
+      </Press>
     );
   return (
     <View className={`rounded-[18px] border-2 border-b-4 p-3.5 ${className}`} style={[colors, style]}>

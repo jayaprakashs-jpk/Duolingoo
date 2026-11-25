@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
+import { Modal, ScrollView, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { C } from '@/lib/constants';
 import type { ExplainSection } from '@/services/explain';
 import type { Grade } from '@/services/grading';
 import { Button } from './ui/Button';
+import { Press } from '@/components/ui/Press';
 
 const PRAISE = ['Great job!', 'Amazing!', 'Nice one!', 'Correct!', 'Excellent!', 'Well done!'];
 
@@ -35,9 +36,9 @@ export function FeedbackSheet({ grade, seed, onContinue, onExplain, onSpeak }: P
         </View>
         <Text style={{ color: fg, fontSize: 22, fontWeight: '900', flex: 1 }}>{ok ? PRAISE[seed % PRAISE.length] : 'Correct solution:'}</Text>
         {onSpeak ? (
-          <Pressable onPress={onSpeak} accessibilityLabel="Hear the answer" style={{ padding: 6 }}>
+          <Press onPress={onSpeak} accessibilityLabel="Hear the answer" style={{ padding: 6 }}>
             <Text style={{ fontSize: 22 }}>🔊</Text>
-          </Pressable>
+          </Press>
         ) : null}
       </View>
 
@@ -57,9 +58,9 @@ export function FeedbackSheet({ grade, seed, onContinue, onExplain, onSpeak }: P
       {grade.message ? <Text style={{ color: fg, marginTop: 6, fontWeight: '600' }}>{grade.message}</Text> : null}
 
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 14 }}>
-        <Pressable onPress={onExplain} style={{ paddingVertical: 12, paddingHorizontal: 6 }} accessibilityLabel="Explain my answer">
+        <Press onPress={onExplain} style={{ paddingVertical: 12, paddingHorizontal: 6 }} accessibilityLabel="Explain my answer">
           <Text style={{ color: fg, fontWeight: '800', letterSpacing: 0.5 }}>💡 EXPLAIN MY ANSWER</Text>
-        </Pressable>
+        </Press>
         <View style={{ flex: 1 }} />
         <Button title="Continue" variant={ok ? 'green' : 'red'} onPress={onContinue} style={{ minWidth: 130 }} />
       </View>
@@ -71,7 +72,7 @@ export function ExplainModal({ visible, sections, onClose }: { visible: boolean;
   const insets = useSafeAreaInsets();
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)' }} onPress={onClose} />
+      <Press style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)' }} onPress={onClose} />
       <View style={{ backgroundColor: '#fff', borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 18, paddingBottom: 18 + insets.bottom, maxHeight: '75%' }}>
         <Text style={{ fontSize: 20, fontWeight: '900', color: '#4B4B4B', marginBottom: 10 }}>💡 Explain my answer</Text>
         <ScrollView>

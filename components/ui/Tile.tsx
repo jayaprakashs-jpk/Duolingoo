@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text, type StyleProp, type ViewStyle } from 'react-native';
+import { Text, type StyleProp, type ViewStyle } from 'react-native';
+import { Press } from '@/components/ui/Press';
 
 interface Props {
   label: string;
@@ -23,7 +24,7 @@ const COLORS = {
 export function Tile({ label, onPress, state = 'idle', disabled, big, style, testID }: Props) {
   const c = COLORS[state];
   return (
-    <Pressable
+    <Press
       testID={testID}
       disabled={disabled || state === 'ghost' || state === 'matched'}
       onPress={onPress}
@@ -44,7 +45,7 @@ export function Tile({ label, onPress, state = 'idle', disabled, big, style, tes
       ]}
     >
       <Text style={{ color: c.text, fontSize: big ? 18 : 17, fontWeight: '700', lineHeight: big ? 28 : 26 }}>{label}</Text>
-    </Pressable>
+    </Press>
   );
 }
 

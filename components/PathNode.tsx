@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import { Press } from '@/components/ui/Press';
 
 export type NodeState = 'locked' | 'active' | 'completed' | 'legendary';
 
@@ -41,7 +42,7 @@ export function PathNode({ icon, label, state, color, dark, side, badge, onPress
       ) : null}
       <View style={{ width: size + 24, height: size + 24, alignItems: 'center', justifyContent: 'center' }}>
         {state === 'active' ? <Animated.View style={[{ position: 'absolute', width: size + 8, height: size + 8, borderRadius: (size + 8) / 2, backgroundColor: color }, ringStyle]} /> : null}
-        <Pressable
+        <Press
           onPress={onPress}
           accessibilityLabel={`${label}, ${state}`}
           style={({ pressed }) => ({
@@ -57,7 +58,7 @@ export function PathNode({ icon, label, state, color, dark, side, badge, onPress
           })}
         >
           <Text style={{ fontSize: state === 'completed' ? 34 : 30, color: '#fff', fontWeight: '900' }}>{glyph}</Text>
-        </Pressable>
+        </Press>
         {badge ? (
           <View style={{ position: 'absolute', right: 8, top: 4, backgroundColor: '#CE82FF', borderRadius: 10, paddingHorizontal: 6, paddingVertical: 1 }}>
             <Text style={{ color: '#fff', fontSize: 10, fontWeight: '900' }}>{badge}</Text>

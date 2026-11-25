@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Avatar } from '@/components/Avatar';
@@ -12,6 +12,7 @@ import { cancelListening, startListening, sttAvailable } from '@/services/stt';
 import { useApp } from '@/store/app';
 import { useSessionStore } from '@/store/session';
 import { toast } from '@/store/ui';
+import { Press } from '@/components/ui/Press';
 
 interface Line {
   who: 'you' | 'tutor';
@@ -23,9 +24,9 @@ function Ctl({ icon, label, onPress, active, danger, big }: { icon: string; labe
   const size = big ? 66 : 50;
   return (
     <View style={{ alignItems: 'center', gap: 4, flex: 1 }}>
-      <Pressable onPress={onPress} accessibilityLabel={label} style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: danger ? '#FF4B4B' : active ? '#58CC02' : 'rgba(255,255,255,0.14)', alignItems: 'center', justifyContent: 'center' }}>
+      <Press onPress={onPress} accessibilityLabel={label} style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: danger ? '#FF4B4B' : active ? '#58CC02' : 'rgba(255,255,255,0.14)', alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ fontSize: big ? 30 : 22 }}>{icon}</Text>
-      </Pressable>
+      </Press>
       <Text numberOfLines={1} style={{ color: '#C9C3E0', fontSize: 10, fontWeight: '700' }}>{label}</Text>
     </View>
   );
@@ -221,7 +222,7 @@ export default function VideoCall() {
             }}
             style={{ flex: 1, backgroundColor: '#262038', color: '#fff', borderRadius: 14, paddingHorizontal: 14, paddingVertical: 10, fontSize: 16 }}
           />
-          <Pressable
+          <Press
             onPress={() => {
               void onUser(draft);
               setDraft('');
@@ -229,7 +230,7 @@ export default function VideoCall() {
             style={{ backgroundColor: '#58CC02', borderRadius: 14, paddingHorizontal: 16, justifyContent: 'center' }}
           >
             <Text style={{ color: '#fff', fontWeight: '900' }}>SEND</Text>
-          </Pressable>
+          </Press>
         </View>
       ) : null}
 

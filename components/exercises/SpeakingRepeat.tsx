@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import type { SpeakingRepeatEx } from '@/data/types';
 import { SpeakerPair } from '@/components/SpeakerButton';
 import { useCourseCtx } from '@/components/CourseContext';
 import { cancelListening, startListening, sttAvailable } from '@/services/stt';
 import { Shell } from './Shell';
 import type { ExProps } from './types';
+import { Press } from '@/components/ui/Press';
 
 type Phase = 'idle' | 'listening' | 'got' | 'typing';
 
@@ -88,7 +89,7 @@ export function SpeakingRepeat({ ex, onAnswer, locked, grade, onSkipSpeaking }: 
         />
       ) : (
         <View style={{ alignItems: 'center', gap: 10 }}>
-          <Pressable
+          <Press
             disabled={locked || busy || canSpeak === null}
             onPress={listen}
             accessibilityLabel="Start speaking"
@@ -104,7 +105,7 @@ export function SpeakingRepeat({ ex, onAnswer, locked, grade, onSkipSpeaking }: 
             })}
           >
             <Text style={{ fontSize: 40 }}>{busy ? '👂' : '🎤'}</Text>
-          </Pressable>
+          </Press>
           <Text style={{ color: '#777', fontWeight: '600' }}>{busy ? 'Listening...' : phase === 'got' ? 'Tap the mic to try again' : 'Tap the mic and say it'}</Text>
           {heard ? <Text style={{ fontSize: 18, color: '#4B4B4B', fontStyle: 'italic', textAlign: 'center' }}>“{heard}”</Text> : null}
         </View>
@@ -113,10 +114,10 @@ export function SpeakingRepeat({ ex, onAnswer, locked, grade, onSkipSpeaking }: 
       {note ? <Text style={{ color: '#FF9600', fontWeight: '600', textAlign: 'center' }}>{note}</Text> : null}
 
       {!locked ? (
-        <Pressable onPress={onSkipSpeaking} style={{ alignSelf: 'center', padding: 10 }} accessibilityLabel="Can't speak now">
+        <Press onPress={onSkipSpeaking} style={{ alignSelf: 'center', padding: 10 }} accessibilityLabel="Can't speak now">
           <Text style={{ color: '#1CB0F6', fontWeight: '800', letterSpacing: 0.6 }}>CAN'T SPEAK NOW</Text>
           <Text style={{ color: '#AFAFAF', fontSize: 12, textAlign: 'center' }}>skips speaking for 15 minutes</Text>
-        </Pressable>
+        </Press>
       ) : null}
       {grade && grade.accuracy !== undefined ? <Text style={{ textAlign: 'center', color: '#777' }}>Accuracy {Math.round(grade.accuracy * 100)}%</Text> : null}
     </Shell>

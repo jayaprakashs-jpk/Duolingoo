@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Animated, { FadeInDown, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import { PLANS, TIER_LABEL, getBilling, type PlanId } from '@/services/billing';
 import { play } from '@/services/sound';
 import { useApp } from '@/store/app';
 import { toast } from '@/store/ui';
+import { Press } from '@/components/ui/Press';
 
 type Cell = boolean | string;
 const ROWS: { label: string; free: Cell; super: Cell; family: Cell; max: Cell; key?: string }[] = [
@@ -55,9 +56,9 @@ export default function Paywall() {
   return (
     <View style={{ flex: 1, backgroundColor: '#1F1B2E' }}>
       <ScrollView contentContainerStyle={{ padding: 18, paddingTop: insets.top + 10, paddingBottom: 130 }}>
-        <Pressable onPress={() => router.back()} hitSlop={12} style={{ alignSelf: 'flex-end', padding: 6 }}>
+        <Press onPress={() => router.back()} hitSlop={12} style={{ alignSelf: 'flex-end', padding: 6 }}>
           <Text style={{ color: '#fff', fontSize: 26, fontWeight: '800' }}>✕</Text>
-        </Pressable>
+        </Press>
         <Animated.View entering={FadeInDown.duration(400)} style={{ alignItems: 'center', gap: 6, marginBottom: 18 }}>
           <Text style={{ fontSize: 60 }}>💎</Text>
           <Text style={{ color: '#fff', fontSize: 28, fontWeight: '900', textAlign: 'center' }}>Learn without limits</Text>
@@ -67,7 +68,7 @@ export default function Paywall() {
 
         {PLANS.map((p, i) => (
           <Animated.View key={p.id} entering={FadeInDown.delay(120 * (i + 1)).duration(400)}>
-            <Pressable onPress={() => setSel(p.id)} style={{ backgroundColor: sel === p.id ? '#2D2745' : '#262038', borderColor: sel === p.id ? p.color : '#3A3354', borderWidth: 3, borderRadius: 20, padding: 16, marginBottom: 12 }}>
+            <Press onPress={() => setSel(p.id)} style={{ backgroundColor: sel === p.id ? '#2D2745' : '#262038', borderColor: sel === p.id ? p.color : '#3A3354', borderWidth: 3, borderRadius: 20, padding: 16, marginBottom: 12 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Text style={{ color: p.color, fontSize: 22, fontWeight: '900' }}>{p.name}</Text>
                 <Text style={{ color: '#fff', fontWeight: '800' }}>{p.price}</Text>
@@ -78,7 +79,7 @@ export default function Paywall() {
                   ✓ {perk}
                 </Text>
               ))}
-            </Pressable>
+            </Press>
           </Animated.View>
         ))}
 
@@ -108,9 +109,9 @@ export default function Paywall() {
         <Animated.View style={pulseStyle}>
           <Button title={tier === sel ? `You have ${plan.name}` : `Get ${plan.name} · ${plan.price}`} onPress={buy} loading={busy} disabled={tier === sel} color={{ bg: plan.color, edge: '#00000055', text: '#fff' }} />
         </Animated.View>
-        <Pressable onPress={async () => { const t = await getBilling().restore(); toast(t ? `Restored ${TIER_LABEL[t]}` : 'Nothing to restore on this device', t ? 'success' : 'info'); if (t) setTier(t); }} style={{ padding: 10 }}>
+        <Press onPress={async () => { const t = await getBilling().restore(); toast(t ? `Restored ${TIER_LABEL[t]}` : 'Nothing to restore on this device', t ? 'success' : 'info'); if (t) setTier(t); }} style={{ padding: 10 }}>
           <Text style={{ color: '#8F88AB', textAlign: 'center', fontWeight: '700' }}>Restore purchases</Text>
-        </Pressable>
+        </Press>
       </View>
     </View>
   );
