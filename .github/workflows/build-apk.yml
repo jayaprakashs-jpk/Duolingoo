@@ -65,12 +65,20 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      # Maven Central sometimes answers GitHub's shared runner IPs with HTTP 429. Gradle keeps what it already
+      # downloaded, so retrying with a pause normally succeeds on the next attempt.
       - name: Build debug and release APKs
         working-directory: android
-        run: >
-          ./gradlew assembleDebug assembleRelease
-          --no-daemon --stacktrace
-          -PreactNativeArchitectures=armeabi-v7a,arm64-v8a,x86_64
+        run: |
+          for attempt in 1 2 3 4; do
+            if ./gradlew assembleDebug assembleRelease --no-daemon --stacktrace \
+                 -PreactNativeArchitectures=armeabi-v7a,arm64-v8a,x86_64; then
+              exit 0
+            fi
+            echo "::warning::Gradle attempt $attempt failed. Retrying in $((attempt * 45))s"
+            sleep $((attempt * 45))
+          done
+          exit 1
 
       - name: Show APK sizes
         run: ls -lh android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/apk/release/app-release.apk
